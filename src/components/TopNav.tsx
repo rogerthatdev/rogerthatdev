@@ -10,8 +10,8 @@ import { Menu, X } from 'lucide-react'
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Blog', href: '/blog' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+//   { name: 'About', href: '/about' },
+//   { name: 'Contact', href: '/contact' },
 ]
 
 export default function TopNavigation() {
@@ -23,7 +23,7 @@ export default function TopNavigation() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block">My Site</span>
+            <span className="hidden font-bold sm:inline-block">roger.that.dev</span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {navItems.map((item) => (
