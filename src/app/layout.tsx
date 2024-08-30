@@ -1,4 +1,4 @@
-import '@/app/ui/global.css'
+import '@/app/globals.css'
 import TopNavigation from '@/components/TopNav';
 
 export default function RootLayout({
