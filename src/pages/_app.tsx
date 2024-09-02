@@ -11,9 +11,9 @@ import TopNavigation from '@/components/TopNav';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <main>
       <TopNavigation />
-      <Component {...pageProps} />;
-    </>
+      <Component {...pageProps} />
+    </main>
   )
 }
