@@ -8,11 +8,13 @@
 // will be used as a template for dynamically generated pages
 
 // TODO: Make this work
-// export default function Post({ post }) {
-//   return (
-//     <div>
-//       <h1>{post.title}</h1>
-//       <div dangerouslySetInnerHTML={{ __html: post.content }} />
-//     </div>
-//   )
-// }
+export default function Post({ post }) {
+    return (
+        <div>
+            {/* <h1>{post.title}</h1> */}
+            <h1>Title</h1>
+            {/* <div dangerouslySetInnerHTML={{ __html: post.content }} /> */}
+            <div>Content</div>
+        </div>
+    );
+}
