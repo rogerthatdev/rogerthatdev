@@ -2,7 +2,7 @@ import Image from "next/image"
 import matter from "gray-matter"
 import ReactMarkdown from "react-markdown"
 import styles from "../../styles/Blog.module.css"
-import glob from "glob"
+import { glob } from "glob"
 import Layout from "../../components/PostLayout"
 
 function reformatDate(fullDate) {
@@ -11,17 +11,26 @@ function reformatDate(fullDate) {
 }
 
 export default function BlogTemplate({ frontmatter, markdownBody, siteTitle }) {
+  console.log('Frontmatter:', frontmatter); // Add this for debugging
+
+  // Check if frontmatter exists before rendering
+  if (!frontmatter) {
+    return <div>Error: Blog post data not found</div>;
+  }
+
   return (
     <Layout siteTitle={siteTitle}>
       <article className={styles.blog}>
-        <figure className={styles.blog__hero}>
-          <Image
-            width="1920"
-            height="1080"
-            src={frontmatter.hero_image}
-            alt={`blog_hero_${frontmatter.title}`}
-          />
-        </figure>
+        {frontmatter.hero_image && (
+          <figure className={styles.blog__hero}>
+            <Image
+              width="1920"
+              height="1080"
+              src={frontmatter.hero_image}
+              alt={`blog_hero_${frontmatter.title}`}
+            />
+          </figure>
+        )}
         <div className={styles.blog__info}>
           <h1>{frontmatter.title}</h1>
           <h3>{reformatDate(frontmatter.date)}</h3>
@@ -45,6 +54,8 @@ export async function getStaticProps(context) {
   // and reading its data
   const content = await import(`../../posts/${slug}.md`)
   const data = matter(content.default)
+  
+  console.log('Extracted frontmatter:', data.data); // Add this for debugging
 
   return {
     props: {
@@ -57,7 +68,10 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   // getting all .md files from the posts directory
-  const blogs = glob.sync(`posts/**/*.md`)
+//   console.log(glob.sync(`posts/**/*.md`))
+  const blogs = glob.sync(`posts/*.md`)
+    // const blogs = glob.sync(`${process.cwd()}/src/posts/*.md`)
+
 
   // converting the file names to their slugs
   const blogSlugs = blogs.map(file =>
