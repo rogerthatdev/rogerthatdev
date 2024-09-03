@@ -1,7 +1,7 @@
 ---
 title: "Cloud Build Trigger with Inline YAML via Terraform"
 subtitle: "providing ad-hoc cloud build config via terraform"
-date: "2023-04-21T16:04:44.000Z"
+date: "2023-04-21"
 author: rogerthat terraformer
 tags: ["terraform", "cloud build"]
 hero_image: /next.svg

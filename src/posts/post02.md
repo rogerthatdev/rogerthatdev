@@ -1,9 +1,10 @@
 ---
 title: "Terraform using Google Cloud Build"
 subtitle: "A very basic example"
-date: 2023-04-01
+date: "2023-04-01"
 author: rogerthat terraformer
 tags: ["terraform", "cicd", "cloud build"]
+hero_image: /next.svg
 # bigimg: [{src: "/img/buildform.png", desc: "cloud build and terraform"}]
 ---
 
