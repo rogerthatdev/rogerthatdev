@@ -3,6 +3,10 @@
 ### Social media
 [LinkedIn](https://www.linkedin.com/in/rogermartinez/) | ~~[Twitter/X](#)~~
 
+### Useless projects
+#### AutoGen
+[Nono Agents](https://github.com/rogerthatdev/nono-agents): code sample demonstrating 2 AutoGen agents playing a knock-off of [Taboo](https://en.wikipedia.org/wiki/Taboo_(game)).
+
 ### Thing's I've written
 
 [Quick dip: Use Google Cloud Vertex AI SDK with the Vercel AI SDK](https://roger-that-dev.medium.com/quick-dip-use-google-cloud-vertex-ai-sdk-with-the-vercel-ai-sdk-fbd60661f544)
