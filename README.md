@@ -3,19 +3,20 @@
 ### Social media
 [LinkedIn](https://www.linkedin.com/in/rogermartinez/) | ~~[Twitter/X](#)~~
 
-### Useless projects
-#### AutoGen
+### Some projects
+
+[Web Sockets](https://github.com/rogerthatdev/websockets): An AI-guided JavaScript project. 
+
 [Nono Agents](https://github.com/rogerthatdev/nono-agents): code sample demonstrating 2 AutoGen agents playing a knock-off of [Taboo](https://en.wikipedia.org/wiki/Taboo_(game)).
 
-### Thing's I've written
+
+### Blogs
 
 [Quick dip: Use Google Cloud Vertex AI SDK with the Vercel AI SDK](https://roger-that-dev.medium.com/quick-dip-use-google-cloud-vertex-ai-sdk-with-the-vercel-ai-sdk-fbd60661f544)
 
 [Push code with GitHub Actions to Google Cloud’s Artifact Registry](https://roger-that-dev.medium.com/push-code-with-github-actions-to-google-clouds-artifact-registry-60d256f8072f)
 
-
 [Terraform using Google Cloud Build: a very basic example](https://roger-that-dev.medium.com/terraform-using-google-cloud-build-a-very-basic-example-723f5fb58bca)
-
 
 [Three Things About Google Cloud Service Accounts](https://roger-that-dev.medium.com/three-things-about-google-cloud-service-accounts-a55466e5efd0)
 
@@ -26,10 +27,10 @@
 [Vue.js and Firebase authentication: A simple example](https://roger-that-dev.medium.com/vue-js-and-firebase-authentication-a-simple-example-8ecc8313aac6)
 
 
-### Conferences I've spoken at
+### Conferences
 [<img src="https://img.youtube.com/vi/J2_vZ_afH6Q/0.jpg" alt="" width="200"/>](https://www.youtube.com/watch?v=J2_vZ_afH6Q)
 
-### Google Cloud YouTube Channels
+### On YouTube
 
 [<img src="https://img.youtube.com/vi/cZaNf2rA30k/0.jpg" alt="Introduction to Generative AI" width="200"/>](https://www.youtube.com/watch?v=cZaNf2rA30k)
 [<img src="https://img.youtube.com/vi/F9iP4bSwyxw/0.jpg" alt="Compute Engine: Autohealing with Managed Instance Groups" width="200"/>](https://www.youtube.com/watch?v=F9iP4bSwyxw)
