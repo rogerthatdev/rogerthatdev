@@ -1,7 +1,40 @@
 import Link from 'next/link'
+import { GetStaticProps } from 'next'
 import { Button } from '@/components/ui/button'
 
-export default function Page() {
+interface Post {
+  title: string;
+  slug: string;
+  filename: string; // Corresponds to the data structure we have
+}
+
+interface BlogPageProps {
+  posts: Post[];
+}
+
+export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
+  // This data is taken from the previous subtask's output
+  const posts: Post[] = [
+    {
+      "filename": "posts/post01.md",
+      "title": "Cloud Build Trigger with Inline YAML via Terraform",
+      "slug": "cloud-build-trigger-with-inline-yaml-via-terraform"
+    },
+    {
+      "filename": "posts/post02.md",
+      "title": "Terraform using Google Cloud Build",
+      "slug": "terraform-using-google-cloud-build"
+    }
+  ];
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+
+export default function BlogPage({ posts }: BlogPageProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b">
@@ -13,7 +46,7 @@ export default function Page() {
             <ul className="flex space-x-4">
               <li>
                 <Button variant="ghost" asChild>
-                  <Link href="/articles">Articles</Link>
+                  <Link href="/blog">Articles</Link>
                 </Button>
               </li>
               <li>
@@ -33,19 +66,18 @@ export default function Page() {
       <main className="flex-grow container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8">Latest Articles</h1>
         <ul className="space-y-4">
-          {['Article 1', 'Article 2', 'Article 3'].map((article, index) => (
-            <li key={index} className="border-b pb-4">
-              <h2 className="text-2xl font-semibold mb-2">{article}</h2>
-              <p className="text-muted-foreground mb-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <Button variant="link" asChild>
-                <Link href={`/article/${index + 1}`}>Read more</Link>
-              </Button>
+          {posts.map((post) => (
+            <li key={post.slug} className="border-b pb-4">
+              <h2 className="text-2xl font-semibold mb-2">
+                <Link href={`/blog/${post.slug}`} className="hover:underline">
+                  {post.title}
+                </Link>
+              </h2>
+              {/* The original hardcoded paragraph and 'Read more' are removed as per plan */}
             </li>
           ))}
         </ul>
       </main>
     </div>
-  )
+  );
 }
