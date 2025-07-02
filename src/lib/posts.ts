@@ -1,17 +1,18 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark'
-import html from 'remark-html'
+import { serialize } from 'next-mdx-remote/serialize'
+// Import any remark/rehype plugins if you decide to use them
+// import remarkGfm from 'remark-gfm'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
 export function getSortedPostsData() {
-  // Get file names under /posts
-  const fileNames = fs.readdirSync(postsDirectory)
+  // Get file names under /posts, looking for .mdx
+  const fileNames = fs.readdirSync(postsDirectory).filter(fn => fn.endsWith('.mdx'))
   const allPostsData = fileNames.map(fileName => {
-    // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, '')
+    // Remove ".mdx" from file name to get id
+    const id = fileName.replace(/\.mdx$/, '')
 
     // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName)
@@ -25,18 +26,19 @@ export function getSortedPostsData() {
     if (matterResult.data.date instanceof Date) {
       dateStr = matterResult.data.date.toISOString().slice(0, 7); // YYYY-MM
     } else {
-      dateStr = matterResult.data.date.slice(0, 7); // Assuming string is already YYYY-MM-DD...
+      // Ensure date is treated as a string if it's not a Date object
+      dateStr = String(matterResult.data.date).slice(0, 7);
     }
 
     // Generate slug from title and formatted date
-    const slug = `${matterResult.data.title.toLowerCase().replace(/\s+/g, '-')}-${dateStr}`
+    const slug = `${String(matterResult.data.title).toLowerCase().replace(/\s+/g, '-')}-${dateStr}`
 
     // Combine the data with the id and slug
     return {
       id,
       slug,
       ...matterResult.data,
-      date: matterResult.data.date instanceof Date ? matterResult.data.date.toISOString() : matterResult.data.date, // Keep original date for display/sorting
+      date: matterResult.data.date instanceof Date ? matterResult.data.date.toISOString() : String(matterResult.data.date), // Keep original date for display/sorting
     } as { id: string; slug: string; date: string; [key: string]: any }
   })
   // Sort posts by date
@@ -50,71 +52,67 @@ export function getSortedPostsData() {
 }
 
 export async function getPostData(slug: string) {
-  const fileNames = fs.readdirSync(postsDirectory)
-  let foundPost: any = null; // To store all data of the found post
+  const fileNames = fs.readdirSync(postsDirectory).filter(fn => fn.endsWith('.mdx'))
+  let foundPostData: any = null;
 
   for (const fileName of fileNames) {
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
 
-    // Ensure date is a string and format it to YYYY-MM for comparison
     let dateStr: string;
     if (matterResult.data.date instanceof Date) {
       dateStr = matterResult.data.date.toISOString().slice(0, 7); // YYYY-MM
     } else {
-      dateStr = matterResult.data.date.slice(0, 7); // Assuming string is already YYYY-MM-DD...
+      dateStr = String(matterResult.data.date).slice(0, 7);
     }
-    const currentSlug = `${matterResult.data.title.toLowerCase().replace(/\s+/g, '-')}-${dateStr}`
+    const currentSlug = `${String(matterResult.data.title).toLowerCase().replace(/\s+/g, '-')}-${dateStr}`
 
     if (currentSlug === slug) {
-      const id = fileName.replace(/\.md$/, '')
-      // Use remark to convert markdown into HTML string
-      const processedContent = await remark()
-        .use(html)
-        .process(matterResult.content)
-      const contentHtml = processedContent.toString()
+      const id = fileName.replace(/\.mdx$/, '')
+      // Use next-mdx-remote to serialize the MDX content
+      const mdxSource = await serialize(matterResult.content, {
+        // Optionally pass remark/rehype plugins
+        // mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [] },
+        parseFrontmatter: false, // Frontmatter is already parsed by gray-matter
+      })
 
-      // Ensure original date is stringified for returning
-      const originalDate = matterResult.data.date instanceof Date ? matterResult.data.date.toISOString() : matterResult.data.date;
+      const originalDate = matterResult.data.date instanceof Date ? matterResult.data.date.toISOString() : String(matterResult.data.date);
 
-      foundPost = {
+      foundPostData = {
         id,
-        contentHtml,
-        slug, // The slug from the URL
+        mdxSource, // This is the serialized MDX content
+        slug,
         ...matterResult.data,
         date: originalDate,
       }
-      break; // Found the post, exit loop
+      break;
     }
   }
 
-  if (!foundPost) {
+  if (!foundPostData) {
     throw new Error(`Post with slug "${slug}" not found`)
   }
 
-  return foundPost;
+  return foundPostData;
 }
 
 export function getAllPostIds() {
-  const fileNames = fs.readdirSync(postsDirectory)
+  const fileNames = fs.readdirSync(postsDirectory).filter(fn => fn.endsWith('.mdx'))
 
   return fileNames.map(fileName => {
-    // Read markdown file as string to get metadata
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
 
-    // Ensure date is a string and format it to YYYY-MM for slug generation
     let dateStr: string;
     if (matterResult.data.date instanceof Date) {
       dateStr = matterResult.data.date.toISOString().slice(0, 7); // YYYY-MM
     } else {
-      dateStr = matterResult.data.date.slice(0, 7); // Assuming string is already YYYY-MM-DD...
+      dateStr = String(matterResult.data.date).slice(0, 7);
     }
 
-    // Generate slug from title and date from metadata
-    const slug = `${matterResult.data.title.toLowerCase().replace(/\s+/g, '-')}-${dateStr}`
+    const slug = `${String(matterResult.data.title).toLowerCase().replace(/\s+/g, '-')}-${dateStr}`
 
     return {
       params: {

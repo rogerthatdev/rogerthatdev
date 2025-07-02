@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { Button } from '@/components/ui/button'
 import { getAllPostIds, getPostData } from '@/lib/posts'
 
@@ -13,13 +14,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // Ensure params and params.slug exist and are strings
   if (!params || typeof params.slug !== 'string') {
     return {
-      notFound: true, // Or handle as an error appropriately
+      notFound: true,
     }
   }
-  const postData = await getPostData(params.slug)
+  const postData = await getPostData(params.slug) // postData will now include mdxSource
   return {
     props: {
       postData,
@@ -27,13 +27,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-type PostData = {
+type PostDataType = {
   title: string
   date: string
-  contentHtml: string
+  mdxSource: MDXRemoteSerializeResult // Updated to use MDXRemoteSerializeResult
+  // Include other frontmatter properties if needed, e.g., author, tags
+  [key: string]: any // Allows for additional frontmatter fields
 }
 
-export default function Post({ postData }: { postData: PostData }) {
+export default function Post({ postData }: { postData: PostDataType }) {
   return (
     <div className="min-h-screen flex flex-col">
       <Head>
@@ -48,6 +50,7 @@ export default function Post({ postData }: { postData: PostData }) {
             <ul className="flex space-x-4">
               <li>
                 <Button variant="ghost" asChild>
+                  {/* Assuming '/blog' is the correct path back to the list of articles */}
                   <Link href="/blog">Back to Articles</Link>
                 </Button>
               </li>
@@ -56,10 +59,10 @@ export default function Post({ postData }: { postData: PostData }) {
         </div>
       </header>
       <main className="flex-grow container mx-auto px-4 py-8">
-        <article>
+        <article className="prose lg:prose-xl dark:prose-invert max-w-none"> {/* Added prose classes for styling */}
           <h1 className="text-4xl font-bold mb-4">{postData.title}</h1>
-          <div className="text-muted-foreground mb-8">{postData.date}</div>
-          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <div className="text-muted-foreground mb-8">{new Date(postData.date).toLocaleDateString()}</div>
+          <MDXRemote {...postData.mdxSource} /> {/* Render MDX content */}
         </article>
       </main>
     </div>
