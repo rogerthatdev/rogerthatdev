@@ -9,9 +9,8 @@ import { Menu, X } from 'lucide-react'
 
 const navItems = [
   { name: 'Home', href: '/' },
-  { name: 'Blog', href: '/blog' },
-//   { name: 'About', href: '/about' },
-//   { name: 'Contact', href: '/contact' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
 ]
 
 export default function TopNavigation() {
