@@ -28,10 +28,10 @@ export function getSortedPostsData() {
       id,
       slug,
       ...matterResult.data,
-    }
+    } as { id: string; slug: string; date: string; [key: string]: any }
   })
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
+  return allPostsData.sort((a: { date: string }, b: { date: string }) => {
     if (a.date < b.date) {
       return 1
     } else {
