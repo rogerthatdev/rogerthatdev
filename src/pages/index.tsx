@@ -2,8 +2,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { getSortedPostsData } from '@/lib/posts'
 import { GetStaticProps } from 'next'
-import TopNav from '@/components/TopNav' // Import TopNav
-
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()
   return {
@@ -24,7 +22,7 @@ type PostData = {
 export default function Home({ allPostsData }: { allPostsData: PostData[] }) {
   return (
     <div className="min-h-screen flex flex-col">
-      <TopNav /> {/* Use TopNav component */}
+      {/* <TopNav /> Use TopNav component */} {/* Removed TopNav from here as it's in _app.tsx */}
       <main className="flex-grow container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8">Latest Articles</h1>
         <ul className="space-y-4">
