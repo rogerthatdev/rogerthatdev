@@ -20,14 +20,18 @@ export function getSortedPostsData() {
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents)
 
+    // Ensure date is a string
+    const date = matterResult.data.date instanceof Date ? matterResult.data.date.toISOString() : matterResult.data.date;
+
     // Generate slug from title and date
-    const slug = `${matterResult.data.title.toLowerCase().replace(/\s+/g, '-')}-${matterResult.data.date}`
+    const slug = `${matterResult.data.title.toLowerCase().replace(/\s+/g, '-')}-${date}`
 
     // Combine the data with the id and slug
     return {
       id,
       slug,
       ...matterResult.data,
+      date, // Ensure the stringified date is part of the returned object
     } as { id: string; slug: string; date: string; [key: string]: any }
   })
   // Sort posts by date
@@ -66,12 +70,16 @@ export async function getPostData(slug: string) {
     .process(matterResult.content)
   const contentHtml = processedContent.toString()
 
+  // Ensure date is a string
+  const date = matterResult.data.date instanceof Date ? matterResult.data.date.toISOString() : matterResult.data.date;
+
   // Combine the data with the id, contentHtml, and slug
   return {
     id,
     contentHtml,
     slug,
     ...matterResult.data,
+    date, // Ensure the stringified date is part of the returned object
   }
 }
 
@@ -84,8 +92,11 @@ export function getAllPostIds() {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
 
+    // Ensure date is a string for slug generation
+    const date = matterResult.data.date instanceof Date ? matterResult.data.date.toISOString() : matterResult.data.date;
+
     // Generate slug from title and date from metadata
-    const slug = `${matterResult.data.title.toLowerCase().replace(/\s+/g, '-')}-${matterResult.data.date}`
+    const slug = `${matterResult.data.title.toLowerCase().replace(/\s+/g, '-')}-${date}`
 
     return {
       params: {
