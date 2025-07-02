@@ -59,11 +59,13 @@ export default function Post({ postData }: { postData: PostDataType }) {
         </div>
       </header>
       <main className="flex-grow container mx-auto px-4 py-8">
-        <article className="prose lg:prose-xl dark:prose-invert max-w-none"> {/* Added prose classes for styling */}
-          <h1 className="text-4xl font-bold mb-4">{postData.title}</h1>
-          <div className="text-muted-foreground mb-8">{new Date(postData.date).toLocaleDateString()}</div>
-          <MDXRemote {...postData.mdxSource} /> {/* Render MDX content */}
-        </article>
+        <div className="bg-[#e3e7ee] p-6 rounded-lg shadow-md max-w-3xl mx-auto">
+          <article className="prose lg:prose-xl dark:prose-invert max-w-none prose-pre:mx-0"> {/* Added prose classes for styling and fixed code block margins */}
+            <h1 className="text-4xl font-bold mb-4">{postData.title}</h1>
+            <div className="text-muted-foreground mb-8">{new Date(postData.date).toLocaleDateString()}</div>
+            <MDXRemote {...postData.mdxSource} /> {/* Render MDX content */}
+          </article>
+        </div>
       </main>
     </div>
   )
