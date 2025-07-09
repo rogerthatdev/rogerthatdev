@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { NavBar } from "@/components/navbar"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
 
 interface Article {
@@ -19,36 +20,7 @@ export function CategoryPage({ title, description, articles }: CategoryPageProps
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="border-b border-gray-200 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-semibold text-black">
-              roger that dev
-            </Link>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors">
-                Home
-              </Link>
-              <Link
-                href="/gcp-for-devs"
-                className={`hover:text-gray-900 transition-colors ${
-                  title === "GCP for devs" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
-                }`}
-              >
-                GCP for devs
-              </Link>
-              <Link
-                href="/genai"
-                className={`hover:text-gray-900 transition-colors ${
-                  title === "GenAI" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
-                }`}
-              >
-                GenAI
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <NavBar activePage={title === "GCP for devs" ? "gcp-for-devs" : "genai"} />
 
       {/* Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

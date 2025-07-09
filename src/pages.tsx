@@ -1,40 +1,12 @@
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { NavBar } from "@/components/navbar"
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="border-b border-gray-200 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-semibold text-black">
-              roger that dev
-            </Link>
-            <div className="hidden md:flex space-x-8">
-              <Link
-                href="/"
-                className="text-gray-900 hover:text-gray-600 transition-colors border-b-2 border-black pb-4"
-              >
-                Home
-              </Link>
-              <Link href="/gcp-for-devs" className="text-gray-600 hover:text-gray-900 transition-colors">
-                GCP for devs
-              </Link>
-              <Link href="/genai" className="text-gray-600 hover:text-gray-900 transition-colors">
-                GenAI
-              </Link>
-            </div>
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <Button variant="ghost" size="sm">
-                Menu
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <NavBar activePage="home" />
 
       {/* Hero Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
