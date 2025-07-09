@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Footer } from "@/components/footer"
+import { Footer } from "@/components/ui/footer"
 
 export default function HomePage() {
   return (

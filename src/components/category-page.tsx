@@ -1,7 +1,7 @@
 import Link from "next/link"
-import { NavBar } from "@/components/navbar"
+import { NavBar } from "@/components/ui/navbar"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
-import { Footer } from "@/components/footer"
+import { Footer } from "@/components/ui/footer"
 
 interface Article {
   id: string

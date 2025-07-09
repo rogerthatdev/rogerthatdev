@@ -1,5 +1,5 @@
 import { CategoryPage } from "@/components/category-page"
-import { Footer } from "@/components/footer"
+import { Footer } from "@/components/ui/footer"
 
 // Static articles for now - these will be replaced by dynamic posts once the posts directory is set up
 const gcpArticles = [

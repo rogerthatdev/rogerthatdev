@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { NavBar } from "@/components/navbar"
+import { NavBar } from "@/components/ui/navbar"
 import { MarkdownRenderer } from "@/components/markdown-renderer"
 import { getPostBySlug, getAllPosts, formatDate } from "@/lib/posts"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"

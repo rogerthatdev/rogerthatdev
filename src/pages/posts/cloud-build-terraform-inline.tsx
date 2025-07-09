@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { NavBar } from "@/components/navbar"
+import { NavBar } from "@/components/ui/navbar"
 import { MarkdownRenderer } from "@/components/markdown-renderer"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
 
