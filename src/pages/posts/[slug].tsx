@@ -1,72 +1,78 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
-import Link from 'next/link'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import { Button } from '@/components/ui/button'
-import { getAllPostIds, getPostData } from '@/lib/posts'
+import { notFound } from "next/navigation"
+import Link from "next/link"
+import { NavBar } from "@/components/navbar"
+import { MarkdownRenderer } from "@/components/markdown-renderer"
+import { getPostBySlug, getAllPosts, formatDate } from "@/lib/posts"
+import { ArrowLeftIcon } from "@radix-ui/react-icons"
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds()
-  return {
-    paths,
-    fallback: false,
+interface PostPageProps {
+  params: {
+    slug: string
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (!params || typeof params.slug !== 'string') {
-    return {
-      notFound: true,
-    }
-  }
-  const postData = await getPostData(params.slug) // postData will now include mdxSource
-  return {
-    props: {
-      postData,
-    },
-  }
+export function generateStaticParams() {
+  const posts = getAllPosts()
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
 }
 
-type PostDataType = {
-  title: string
-  date: string
-  mdxSource: MDXRemoteSerializeResult // Updated to use MDXRemoteSerializeResult
-  // Include other frontmatter properties if needed, e.g., author, tags
-  [key: string]: any // Allows for additional frontmatter fields
-}
+export default function PostPage({ params }: PostPageProps) {
+  const post = getPostBySlug(params.slug)
 
-export default function Post({ postData }: { postData: PostDataType }) {
+  if (!post) {
+    notFound()
+  }
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Head>
-        <title>{postData.title}</title>
-      </Head>
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold">
-            TechBlog
+    <div className="min-h-screen bg-white">
+      <NavBar activePage="home" />
+
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-8">
+          <Link href="/" className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+            <ArrowLeftIcon className="h-4 w-4 mr-2" />
+            Back to Home
           </Link>
-          <nav>
-            <ul className="flex space-x-4">
-              <li>
-                <Button variant="ghost" asChild>
-                  {/* Assuming '/blog' is the correct path back to the list of articles */}
-                  <Link href="/blog">Back to Articles</Link>
-                </Button>
-              </li>
-            </ul>
-          </nav>
         </div>
-      </header>
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="bg-[#e3e7ee] p-6 rounded-lg shadow-md max-w-3xl mx-auto">
-          <article className="prose lg:prose-xl dark:prose-invert max-w-none prose-pre:mx-0"> {/* Added prose classes for styling and fixed code block margins */}
-            <h1 className="text-4xl font-bold mb-4">{postData.title}</h1>
-            <div className="text-muted-foreground mb-8">{new Date(postData.date).toLocaleDateString()}</div>
-            <MDXRemote {...postData.mdxSource} /> {/* Render MDX content */}
-          </article>
-        </div>
+
+        <article>
+          {/* Post Header */}
+          <header className="mb-8">
+            <h1 className="text-4xl font-bold text-black mb-4">{post.title}</h1>
+            {post.subtitle && <p className="text-xl text-gray-600 mb-4">{post.subtitle}</p>}
+            <div className="flex items-center space-x-4 text-sm text-gray-500">
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              {post.author && <span>by {post.author}</span>}
+            </div>
+            {post.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-4">
+                {post.tags.map((tag) => (
+                  <span key={tag} className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </header>
+
+          {/* Post Content */}
+          <div className="border-t border-gray-200 pt-8">
+            <MarkdownRenderer content={post.content} />
+          </div>
+        </article>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-200 bg-gray-50 mt-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center text-gray-600">
+            <p>Footer 2023</p>
+            <p className="mt-2 text-sm">© 2023 roger that dev. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

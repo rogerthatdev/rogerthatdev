@@ -1,29 +1,30 @@
 import { CategoryPage } from "@/components/category-page"
 
+// Static articles for now - these will be replaced by dynamic posts once the posts directory is set up
 const gcpArticles = [
   {
-    id: "1",
+    id: "cloud-build-terraform-inline",
+    title: "Cloud Build Trigger with Inline YAML via Terraform",
+    description:
+      "Learn how to create a Cloud Build trigger with inline configuration using Terraform and the templatefile() function.",
+    slug: "posts/cloud-build-terraform-inline",
+    date: "April 21, 2023",
+  },
+  {
+    id: "gcp-getting-started",
     title: "Getting Started with Google Cloud Platform",
     description:
       "A comprehensive guide to setting up your first GCP project, understanding the console, and navigating core services for developers.",
-    slug: "gcp-for-devs/getting-started-gcp",
+    slug: "posts/gcp-getting-started",
     date: "December 15, 2023",
   },
   {
-    id: "2",
+    id: "cloud-functions-vs-cloud-run",
     title: "Cloud Functions vs Cloud Run: Choosing the Right Serverless Solution",
     description:
       "Compare Google Cloud's serverless offerings and learn when to use Cloud Functions versus Cloud Run for your applications.",
-    slug: "gcp-for-devs/cloud-functions-vs-cloud-run",
+    slug: "posts/cloud-functions-vs-cloud-run",
     date: "December 10, 2023",
-  },
-  {
-    id: "3",
-    title: "Building Scalable APIs with Cloud Endpoints",
-    description:
-      "Learn how to create, deploy, and manage APIs using Google Cloud Endpoints with authentication and monitoring built-in.",
-    slug: "gcp-for-devs/scalable-apis-cloud-endpoints",
-    date: "December 5, 2023",
   },
 ]
 
