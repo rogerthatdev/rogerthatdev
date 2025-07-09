@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
 
 export default function HomePage() {
   return (
@@ -42,10 +42,10 @@ export default function HomePage() {
           <div className="relative bg-gray-50 rounded-lg overflow-hidden">
             <div className="flex items-center justify-between absolute top-1/2 left-4 right-4 transform -translate-y-1/2 z-10">
               <Button variant="ghost" size="icon" className="bg-white/80 hover:bg-white">
-                <ChevronLeft className="h-6 w-6" />
+                <ChevronLeftIcon className="h-6 w-6" />
               </Button>
               <Button variant="ghost" size="icon" className="bg-white/80 hover:bg-white">
-                <ChevronRight className="h-6 w-6" />
+                <ChevronRightIcon className="h-6 w-6" />
               </Button>
             </div>
             <div className="aspect-[16/9] flex items-center justify-center">
