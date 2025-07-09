@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { NavBar } from "@/components/ui/navbar"
 import { MarkdownRenderer } from "@/components/markdown-renderer"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
 
@@ -119,40 +118,26 @@ This approach gives you the flexibility to manage your Cloud Build configuration
 
 export default function CloudBuildTerraformInlinePage() {
   return (
-    <div className="min-h-screen bg-white">
-      <NavBar activePage="home" />
+    <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="mb-8">
+        <Link
+          href="/gcp-for-devs"
+          className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+        >
+          <ArrowLeftIcon className="h-4 w-4 mr-2" />
+          Back to GCP for devs
+        </Link>
+      </div>
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <Link
-            href="/gcp-for-devs"
-            className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            <ArrowLeftIcon className="h-4 w-4 mr-2" />
-            Back to GCP for devs
-          </Link>
+      <article>
+        <div className="flex flex-wrap gap-2 mb-6">
+          <span className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full">terraform</span>
+          <span className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full">cloud build</span>
+          <span className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full">GCP</span>
         </div>
 
-        <article>
-          <div className="flex flex-wrap gap-2 mb-6">
-            <span className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full">terraform</span>
-            <span className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full">cloud build</span>
-            <span className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full">GCP</span>
-          </div>
-
-          <MarkdownRenderer content={postContent} />
-        </article>
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-gray-200 bg-gray-50 mt-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center text-gray-600">
-            <p>Footer 2023</p>
-            <p className="mt-2 text-sm">© 2023 roger that dev. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
-    </div>
+        <MarkdownRenderer content={postContent} />
+      </article>
+    </main>
   )
 }

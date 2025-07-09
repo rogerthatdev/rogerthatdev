@@ -1,7 +1,5 @@
 import Link from "next/link"
-import { NavBar } from "@/components/ui/navbar"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
-import { Footer } from "@/components/ui/footer"
 
 interface Article {
   id: string
@@ -19,10 +17,7 @@ interface CategoryPageProps {
 
 export function CategoryPage({ title, description, articles }: CategoryPageProps) {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <NavBar activePage={title === "GCP for devs" ? "gcp-for-devs" : "genai"} />
-
+    <>
       {/* Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
@@ -63,7 +58,6 @@ export function CategoryPage({ title, description, articles }: CategoryPageProps
           </div>
         )}
       </main>
-        <Footer />
-    </div>
+    </>
   )
 }
