@@ -32,7 +32,7 @@ export function TopicLayout({ title, description, articles }: TopicPageProps) {
                 {/* Articles List */}
                 <div className="space-y-6">
                     {articles.map((article) => (
-                        <ArticleCard article={article} />
+                        <ArticleCard key={article.id} article={article} />
                     ))}
                 </div>
 

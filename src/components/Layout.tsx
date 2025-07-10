@@ -1,9 +1,10 @@
 import Navbar from "./Navbar"
 import Footer from "./Footer"
+import { ActivePage } from "@/types/activePage"
 
 interface LayoutProps {
   children: React.ReactNode,
-  activePage: "home" | "gcp-for-devs" | "genai" | "devrel"
+  activePage: ActivePage
 }
 
 export default function Layout({ children, activePage }: LayoutProps) {
