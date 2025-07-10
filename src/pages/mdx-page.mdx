@@ -1,0 +1,69 @@
+---
+title: "Understanding JavaScript Closures"
+subtitle: "A generated test post"
+date: "2025-07-10"
+tags: ["javascript", "functions", "scope", "ai"]
+summary: "A simple guide to how closures work in JavaScript."
+author: roger that developer
+---
+
+![test image](/img/mock.png)
+
+# JavaScript Closures Explained
+
+Closures are a powerful and often confusing feature of JavaScript. In simple terms, a **closure** is when a function *remembers* variables from its outer scope, even after that outer function has returned.
+
+> Closures let you access outer function variables from an inner function.
+
+## Basic Example
+
+Consider this:
+
+`function outer() { let count = 0; return function inner() { count++; return count; }; }`
+
+Then calling:
+
+`const counter = outer();`
+
+`counter(); // 1`
+
+`counter(); // 2`
+
+This works because the inner function "closes over" the variable `count`.
+
+## When Are Closures Useful?
+
+Closures are useful for:
+
+- Maintaining private state  
+- Function factories  
+- Event handlers  
+- Partial application  
+
+Here's another example:
+
+`function makeMultiplier(x) { return function(y) { return x * y; }; }`
+
+`const double = makeMultiplier(2);`
+
+`double(5); // 10`
+
+## Inline Code
+
+Closures are formed when a function accesses a variable defined outside its immediate scope, like `x` in the above example.
+
+## Tips
+
+
+
+## Comparison Table
+
+| Use Case         | Needs Closure | Example                          |
+|------------------|---------------|----------------------------------|
+| Private state     | ✅            | Counter functions                |
+| One-time config   | ✅            | Custom loggers                   |
+| API callback      | ❌            | Fetching data                    |
+
+## Conclusion
+
+Closures are a core part of JavaScript and essential for writing expressive, powerful functions.
