@@ -1,4 +1,4 @@
-import MDXPage from '@/markdown/mdx-page.mdx'
+import MDXPage from '@/markdown/sample-post.mdx'
 import Link from "next/link"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
 
