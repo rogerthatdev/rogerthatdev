@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 interface NavBarProps {
-  activePage: "home" | "gcp-for-devs" | "genai"
+  activePage: "home" | "gcp-for-devs" | "genai" | "devrel"
 }
 
 export default function NavBar({ activePage }: NavBarProps) {
@@ -15,27 +15,31 @@ export default function NavBar({ activePage }: NavBarProps) {
           <div className="hidden md:flex space-x-8">
             <Link
               href="/"
-              className={`hover:text-gray-900 transition-colors ${
-                activePage === "home" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
-              }`}
+              className={`hover:text-gray-900 transition-colors ${activePage === "home" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
+                }`}
             >
               Home
             </Link>
             <Link
               href="/gcp-for-devs"
-              className={`hover:text-gray-900 transition-colors ${
-                activePage === "gcp-for-devs" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
-              }`}
+              className={`hover:text-gray-900 transition-colors ${activePage === "gcp-for-devs" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
+                }`}
             >
               GCP for devs
             </Link>
             <Link
               href="/genai"
-              className={`hover:text-gray-900 transition-colors ${
-                activePage === "genai" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
-              }`}
+              className={`hover:text-gray-900 transition-colors ${activePage === "genai" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
+                }`}
             >
               GenAI
+            </Link>
+            <Link
+              href="/devrel"
+              className={`hover:text-gray-900 transition-colors ${activePage === "devrel" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
+                }`}
+            >
+              DevRel
             </Link>
           </div>
         </div>
