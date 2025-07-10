@@ -4,13 +4,13 @@ import { Article } from "@/types/article"
 import { ArticleCard } from "@/components/ArticleCard"
 
 
-interface CategoryPageProps {
+interface TopicPageProps {
     title: string
     description: string
     articles: Article[]
 }
 
-export function TopicLayout({ title, description, articles }: CategoryPageProps) {
+export function TopicLayout({ title, description, articles }: TopicPageProps) {
     return (
         <>
             {/* Content */}
