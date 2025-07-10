@@ -14,6 +14,7 @@ export function TopicLayout({ title, description, articles }: CategoryPageProps)
     return (
         <>
             {/* Content */}
+            {/* TODO: Update so that it redirects to the active navbar page */}
             <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="mb-8">
                     <Link href="/" className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors">
