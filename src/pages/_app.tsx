@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import Layout from "@/components/Layout"
+import Layout from "@/components/ui/Layout"
 import type { AppProps } from "next/app";
 import type { NextPage } from "next"
 import { ActivePage } from "@/types/activePage"
