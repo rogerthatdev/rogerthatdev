@@ -17,7 +17,7 @@ const genaiArticles = [
     }
 ]
 
-export default function GenAIPage() {
+function GenAIPage() {
     return (
         <div>
             <TopicLayout
@@ -28,3 +28,7 @@ export default function GenAIPage() {
         </div>
     )
 }
+
+GenAIPage.activePage = "genai"
+
+export default GenAIPage
