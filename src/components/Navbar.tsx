@@ -9,9 +9,12 @@ export default function NavBar({ activePage }: NavBarProps) {
     <nav className="border-b border-gray-200 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="text-xl font-semibold text-black">
-            roger that dev
-          </Link>
+          <div className="flex items-center space-x-2">
+            <img src="/img/mock.png" alt="Logo" className="h-8 w-8 object-contain" />
+            <Link href="/" className="text-xl font-semibold text-black">
+              roger that dev
+            </Link>
+          </div>
           <div className="hidden md:flex space-x-8">
             <Link
               href="/"
