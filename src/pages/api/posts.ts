@@ -2,6 +2,10 @@ import { MongoClient } from "mongodb";
 import { UUID } from "bson";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+if (!process.env.MONGODB_URI) {
+  throw new Error("Missing MONGODB_URI in environment variables");
+}
+
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, {
   pkFactory: { createPk: () => new UUID().toBinary() },
