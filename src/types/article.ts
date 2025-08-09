@@ -1,49 +1,34 @@
 import { z } from "zod";
 
-function generateSlug(title: string): string {
-  return title
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
-}
+const slugFrom = (s: string) =>
+  s.toLowerCase().trim()
+   .replace(/[^a-z0-9\s-]/g, "")
+   .replace(/\s+/g, "-")
+   .replace(/-+/g, "-")
+   .replace(/^-+|-+$/g, "");
 
-// Zod schema for runtime validation
-export const ArticleSchema = z.object({
-    title: z.string()
-        .min(1, "Title is required")
-        .max(200, "Title must be less than 200 characters"),
-    subtitle: z.string()
-        .min(1, "Subtitle is required")
-        .max(200, "Subtitle must be less than 200 characters"),
-    frontmatter: z.object({
-        date: z.string()
-            .optional()
-            .refine((val) => !val || /^\d{4}-\d{2}-\d{2}$/.test(val), {
-                message: "Date must be in YYYY-MM-DD format"
-            }),
-        tags: z.array(z.string())
-            .min(1, "At least one tag is required")
-            .max(5, "Maximum of 5 tags allowed"),
-        author: z.string()
-            .min(1, "Author is required")
-            .max(100, "Author must be less than 100 characters"),
-        tldr: z.string()
-            .min(1, "Tldr is required")
-            .max(500, "Tldr must be less than 500 characters"),
-    }),
-    content: z.string()
-        .min(1, "Content is required")
-}).transform((data) => ({
-    ...data,
-    slug: generateSlug(data.title)
+const FrontmatterSchema = z.object({
+  date: z.coerce.date().optional()
+    .transform(d => d ? d.toISOString().slice(0,10) : undefined),
+  tags: z.array(z.string().trim().min(1)).min(1).max(5)
+    .transform(arr => [...new Set(arr.map(t => t.toLowerCase()))]),
+  author: z.string().trim().min(1).max(100),
+  tldr: z.string().trim().min(1).max(500).optional(),
+}).strict();
+
+// Incoming payload (from GH) — NO slug here
+export const CreateArticleInputSchema = z.object({
+    title: z.string().trim().min(1).max(200),
+    subtitle: z.string().trim().min(1).max(200),
+    frontmatter: FrontmatterSchema,
+    content: z.string().trim().min(1),
+  }).strict();
+
+export const CreateArticleSchema = CreateArticleInputSchema.transform((d) => ({
+  ...d,
+  slug: slugFrom(d.title),
 }));
 
-// TypeScript interface derived from the Zod schema
-export type Article = z.infer<typeof ArticleSchema>;
 
-// Extended interface for database operations (includes id)
-export interface ArticleWithId extends Article {
-  id: string;
-}
+export type CreateArticleInput = z.infer<typeof CreateArticleInputSchema>; // what GH sends
+export type CreateArticle = z.infer<typeof CreateArticleSchema>;           // what you store
