@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 import { UUID } from "bson";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { CreateArticleSchema, CreateArticle } from "@/types/article";
 
 // Validate that MongoDB connection string is provided in environment variables
 if (!process.env.MONGODB_URI) {
@@ -21,28 +22,38 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  
   // Handle POST requests - Create new blog posts
   if (req.method === "POST") {
     try {
+      // Validate the request body against the CreateArticleSchema
+      const parsed = CreateArticleSchema.safeParse(req.body);
+      if (!parsed.success) {
+        res.status(400).json({ message: "Invalid request body" });
+        return;
+      }
+      const article: CreateArticle = parsed.data;
+
+
       // Establish connection to MongoDB
       await client.connect();
       
       // Get reference to the database and collection
       const db = client.db("roger_that_posts");
       const col = db.collection("posts");
-      
-      // Extract the new post data from the request body
-      const newPost = req.body;
-      
-      // Insert the new post into the database
-      // The spread operator (...) ensures we don't modify the original req.body
-      const result = await col.insertOne({ ...newPost });
 
-      // Return success response with the newly created post's ID
-      res.status(201).json({
-        message: "Article created successfully",
-        id: result.insertedId,
-      });
+      // enforce that the slug is unique
+      const existing = await col.findOne({ slug: article.slug });
+      if (existing) return res.status(409).json({ message: "Slug already exists" });
+
+      const doc = {
+        ...article,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+      
+      const result = await col.insertOne(doc);
+      return res.status(201).json({ id: result.insertedId, slug: article.slug });
     } catch (error) {
       // Log the error for debugging purposes
       console.error("Error creating article:", error);
