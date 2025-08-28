@@ -1,19 +1,25 @@
 import { TopicLayout } from "@/components/TopicLayout"
 
-const genaiArticles = [
+import { Article } from "@/types/article"
+
+const genaiArticles: Article[] = [
     {
         id: "genai-1",
         title: "GenAI 1",
-        description: "GenAI 1 description",
+        subtitle: "GenAI 1 description",
         slug: "genai-1",
         date: "2025-01-01",
+        tags: ["genai"],
+        author: "test"
     },
     {
         id: "genai-2",
         title: "GenAI 2",
-        description: "GenAI 2 description",
+        subtitle: "GenAI 2 description",
         slug: "genai-2",
         date: "2025-01-02",
+        tags: ["genai"],
+        author: "test"
     }
 ]
 
