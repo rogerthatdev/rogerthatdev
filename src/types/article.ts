@@ -32,10 +32,17 @@ export const CreateArticleSchema = CreateArticleInputSchema.transform((d) => ({
 
 export type CreateArticleInput = z.infer<typeof CreateArticleInputSchema>; // what GH sends
 export type CreateArticle = z.infer<typeof CreateArticleSchema>;           // what you store
+
 export interface Article {
   id: string;
   title: string;
-  description?: string; 
+  subtitle: string;
   slug: string;
-  date?: string;
+  date: string;
+  tags: string[];
+  author: string;
+}
+
+export interface Post extends Article {
+  content: string;
 }
