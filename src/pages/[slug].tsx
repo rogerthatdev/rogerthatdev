@@ -1,7 +1,7 @@
 import { getPostData, getAllPostSlugs } from '@/lib/posts'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { Post } from '@/types/article'
-import { MDXRemote } from 'next-mdx-remote'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
 }
 
-export default function PostPage({ postData, mdxSource }: { postData: Post, mdxSource: any }) {
+export default function PostPage({ postData, mdxSource }: { postData: Post, mdxSource: MDXRemoteSerializeResult }) {
     return (
         <article className="prose prose-gray max-w-none">
             <h1>{postData.title}</h1>

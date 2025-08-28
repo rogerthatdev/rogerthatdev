@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 interface NavBarProps {
   activePage: "home" | "gcp-for-devs" | "genai" | "devrel"
@@ -10,7 +11,7 @@ export default function NavBar({ activePage }: NavBarProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-            <img src="/img/mock.png" alt="Logo" className="h-8 w-8 object-contain" />
+            <Image src="/img/mock.png" alt="Logo" width={32} height={32} className="h-8 w-8 object-contain" />
             <Link href="/" className="text-xl font-semibold text-black">
               roger that dev
             </Link>
