@@ -7,10 +7,10 @@ const postsDirectory = path.join(process.cwd(), 'posts')
 
 const slugFrom = (s: string) =>
   s.toLowerCase().trim()
-   .replace(/[^a-z0-9\s-]/g, "")
-   .replace(/\s+/g, "-")
-   .replace(/-+/g, "-")
-   .replace(/^-+|-+$/g, "");
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 export function getSortedPostsData() {
   // Get file names under /posts
@@ -27,14 +27,14 @@ export function getSortedPostsData() {
     const matterResult = matter(fileContents)
 
     const post: Post = {
-        id,
-        title: matterResult.data.title,
-        subtitle: matterResult.data.subtitle,
-        date: matterResult.data.date.toISOString(),
-        tags: matterResult.data.tags,
-        author: matterResult.data.author,
-        slug: slugFrom(matterResult.data.title),
-        content: matterResult.content,
+      id,
+      title: matterResult.data.title,
+      subtitle: matterResult.data.subtitle,
+      date: matterResult.data.date.toISOString(),
+      tags: matterResult.data.tags,
+      author: matterResult.data.author,
+      slug: slugFrom(matterResult.data.title),
+      content: matterResult.content,
     }
 
     // Combine the data with the id
@@ -50,22 +50,29 @@ export function getSortedPostsData() {
   })
 }
 
+export function getPostsByTags(tags: string[]) {
+  const allPosts = getSortedPostsData()
+  return allPosts.filter(post =>
+    post.tags.some(tag => tags.includes(tag))
+  )
+}
+
 export function getAllPostSlugs() {
-    const posts = getSortedPostsData()
-    return posts.map(post => {
-        return {
-            params: {
-                slug: post.slug
-            }
-        }
-    })
+  const posts = getSortedPostsData()
+  return posts.map(post => {
+    return {
+      params: {
+        slug: post.slug
+      }
+    }
+  })
 }
 
 export async function getPostData(slug: string): Promise<Post> {
-    const posts = getSortedPostsData()
-    const post = posts.find(p => p.slug === slug)
-    if (!post) {
-        throw new Error(`Post with slug ${slug} not found`)
-    }
-    return post
+  const posts = getSortedPostsData()
+  const post = posts.find(p => p.slug === slug)
+  if (!post) {
+    throw new Error(`Post with slug ${slug} not found`)
+  }
+  return post
 }
