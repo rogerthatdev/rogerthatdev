@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export default function PostPage({ postData, mdxSource }: { postData: Post, mdxSource: MDXRemoteSerializeResult }) {
     return (
-        <article className="prose prose-gray max-w-none">
+        <article className="prose prose-gray mx-auto">
             <h1>{postData.title}</h1>
             <p className="text-gray-600">{postData.subtitle}</p>
             <p className="text-sm text-gray-400">{postData.date.split('T')[0]}</p>
