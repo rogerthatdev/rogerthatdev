@@ -3,6 +3,9 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { Post } from '@/types/article'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
+import rehypeHighlight from 'rehype-highlight'
+import rehypeSlug from 'rehype-slug'
+import 'highlight.js/styles/github-dark.css'
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const paths = getAllPostSlugs()
@@ -14,7 +17,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const postData = await getPostData(params?.slug as string)
-    const mdxSource = await serialize(postData.content)
+    const mdxSource = await serialize(postData.content, {
+        mdxOptions: {
+            rehypePlugins: [rehypeHighlight, rehypeSlug],
+        },
+    })
     return {
         props: {
             postData,
