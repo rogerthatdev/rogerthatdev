@@ -18,7 +18,7 @@ function DevRelPage({ articles }: { articles: Article[] }) {
   return (
     <div>
       <TopicLayout
-        title="DevRel things"
+        title="Developer Relations"
         description="Personal musings on the art of developer relations."
         articles={articles}
       />

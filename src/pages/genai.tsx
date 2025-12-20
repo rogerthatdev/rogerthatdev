@@ -18,7 +18,7 @@ function GenAIPage({ articles }: { articles: Article[] }) {
     return (
         <div>
             <TopicLayout
-                title="AI things"
+                title="AI"
                 description="Generative AI things. Agents, LLMs, etc."
                 articles={articles}
             />

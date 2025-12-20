@@ -29,21 +29,21 @@ export default function NavBar({ activePage }: NavBarProps) {
               className={`hover:text-gray-900 transition-colors ${activePage === "gcp-for-devs" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
                 }`}
             >
-              GCP for devs
+              Cloud
             </Link>
             <Link
               href="/genai"
               className={`hover:text-gray-900 transition-colors ${activePage === "genai" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
                 }`}
             >
-              GenAI
+              AI
             </Link>
             <Link
               href="/devrel"
               className={`hover:text-gray-900 transition-colors ${activePage === "devrel" ? "text-gray-900 border-b-2 border-black pb-4" : "text-gray-600"
                 }`}
             >
-              DevRel
+              Developer Relations
             </Link>
           </div>
         </div>

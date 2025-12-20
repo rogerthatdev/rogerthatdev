@@ -18,7 +18,7 @@ function GCPForDevsPage({ articles }: { articles: Article[] }) {
   return (
     <div>
       <TopicLayout
-        title="GCP for devs"
+        title="Cloud"
         description="Practical guides and tutorials for developers working with Google Cloud Platform. From getting started to advanced deployment strategies, learn how to leverage GCP services to build and scale modern applications."
         articles={articles}
       />
