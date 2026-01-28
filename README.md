@@ -32,6 +32,10 @@
 
 ### On YouTube
 
+[<img src="https://img.youtube.com/vi/AF-Nnegz6mY/0.jpg" alt="" width="200"/>](https://youtu.be/AF-Nnegz6mY)
+[<img src="https://img.youtube.com/vi/5ivFW9gYmq0/0.jpg" alt="" width="200"/>](https://youtu.be/5ivFW9gYmq0)
+[<img src="https://img.youtube.com/vi/jiolmnh5N2U/0.jpg" alt="" width="200"/>](https://youtu.be/jiolmnh5N2U)
+
 [<img src="https://img.youtube.com/vi/cZaNf2rA30k/0.jpg" alt="Introduction to Generative AI" width="200"/>](https://www.youtube.com/watch?v=cZaNf2rA30k)
 [<img src="https://img.youtube.com/vi/F9iP4bSwyxw/0.jpg" alt="Compute Engine: Autohealing with Managed Instance Groups" width="200"/>](https://www.youtube.com/watch?v=F9iP4bSwyxw)
 [<img src="https://img.youtube.com/vi/SDhMwyyd9_0/0.jpg" alt="" width="200"/>](https://youtu.be/SDhMwyyd9_0)
