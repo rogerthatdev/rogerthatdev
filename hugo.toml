@@ -1,7 +1,10 @@
-baseURL = 'https://www.rogerthat.dev/'
-languageCode = 'en-us'
-title = 'Roger That Dev'
-theme = 'paper'
+baseURL = "/"
+languageCode = "en-us"
+title = "Roger That Dev"
+theme = "paper"
+
+canonifyURLs = false
+relativeURLs = true
 
 [params]
   color = 'linen'                           # linen, wheat, gray, light
