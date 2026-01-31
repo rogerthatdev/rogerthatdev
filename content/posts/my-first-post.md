@@ -3,6 +3,7 @@ date = '2026-01-31T11:14:36-08:00'
 draft = false
 title = 'New site, first post'
 nowplaying = "A Perfect Circle - Mer De Noms"
+comments = true
 +++
 ## Quick introduction
 

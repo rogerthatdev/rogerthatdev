@@ -1,4 +1,18 @@
 baseURL = 'https://www.rogerthat.dev/'
 languageCode = 'en-us'
 title = 'Roger That Dev'
-theme = 'ananke'
+theme = 'paper'
+
+[params]
+  color = 'linen'                           # linen, wheat, gray, light
+
+  # header social icons
+  github = 'rogerthatdev'                
+  linkedin = 'rogermartinez'            
+  bluesky = 'rogerthatdev.bsky.social'               
+  rss = true                            
+
+  # home page profile
+  avatar = 'roger.that.dev@gmail.com'        # gravatar email or image url
+  name = 'Roger Martinez'
+  bio = 'Developer Relations Engineer'
