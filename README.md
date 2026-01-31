@@ -1,13 +1,7 @@
 ## Hi there 👋
 [Personal site](https://www.rogerthat.dev)
+
 [LinkedIn](https://www.linkedin.com/in/rogermartinez/)
-
-### Some projects
-
-[Web Sockets](https://github.com/rogerthatdev/websockets): An AI-guided JavaScript project. 
-
-[Nono Agents](https://github.com/rogerthatdev/nono-agents): code sample demonstrating 2 AutoGen agents playing a knock-off of [Taboo](https://en.wikipedia.org/wiki/Taboo_(game)).
-
 
 ### Blogs
 
