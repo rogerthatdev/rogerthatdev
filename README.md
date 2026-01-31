@@ -1,7 +1,6 @@
 ## Hi there 👋
-
-### Social media
-[LinkedIn](https://www.linkedin.com/in/rogermartinez/) | ~~[Twitter/X](#)~~
+[Personal site](https://www.rogerthat.dev)
+[LinkedIn](https://www.linkedin.com/in/rogermartinez/)
 
 ### Some projects
 
