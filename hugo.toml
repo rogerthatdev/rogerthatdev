@@ -1,4 +1,4 @@
 baseURL = 'https://www.rogerthat.dev/'
 languageCode = 'en-us'
 title = 'Roger That Dev'
-theme = 'ananke'
+theme = 'paper'
