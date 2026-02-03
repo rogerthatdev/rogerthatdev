@@ -1,0 +1,245 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en-us"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Coding Assistant Instructions for Learning - Roger That Dev</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="When the journey matters more than the destination
+Coding agents like Claude Code are cool, but it&rsquo;s no fun if you want to learn to write code yourself.
+If you’re using coding agents but still want to learn, this pattern may help. Below is a set of instructions I include in the agent config file (CLAUDE.md for Claude Code) to help it help me learn functional programming in my personal projects. The principles are sourced from the book Mastering JavaScript Functional Programming by Federico Kereki. I used AI to refine them to be Python-specific for a project I&rsquo;m working on." />
+  <meta name="author" content="Roger Martinez" /><link rel="preload stylesheet" as="style" href="https://www.rogerthat.dev/main.min.e86ae67e01e2d2055106abf72be7357c950191060e5f159f24e2790fd8237e8c.css" integrity="sha256-6GrmfgHi0gVRBqv3K&#43;c1fJUBkQYOXxWfJOJ5D9gjfow=" />
+
+  
+  <link rel="preload" as="image" href="https://www.rogerthat.dev/theme.png" />
+
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/79e557d217f42a1ff5d9b6b1d6901936?s=160&amp;d=identicon" />
+
+  <link rel="preload" as="image" href="https://www.rogerthat.dev/github.svg" /><link rel="preload" as="image" href="https://www.rogerthat.dev/linkedin.svg" /><link rel="preload" as="image" href="https://www.rogerthat.dev/bluesky.svg" /><link rel="preload" as="image" href="https://www.rogerthat.dev/rss.svg" />
+
+  <script
+    defer
+    src="https://www.rogerthat.dev/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad()"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="https://www.rogerthat.dev/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://www.rogerthat.dev/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.155.0">
+  <meta itemprop="name" content="Coding Assistant Instructions for Learning">
+  <meta itemprop="description" content="When the journey matters more than the destination Coding agents like Claude Code are cool, but it’s no fun if you want to learn to write code yourself.
+If you’re using coding agents but still want to learn, this pattern may help. Below is a set of instructions I include in the agent config file (CLAUDE.md for Claude Code) to help it help me learn functional programming in my personal projects. The principles are sourced from the book Mastering JavaScript Functional Programming by Federico Kereki. I used AI to refine them to be Python-specific for a project I’m working on.">
+  <meta itemprop="datePublished" content="2026-02-03T08:25:51-08:00">
+  <meta itemprop="dateModified" content="2026-02-03T08:25:51-08:00">
+  <meta itemprop="wordCount" content="469"><meta property="og:url" content="https://www.rogerthat.dev/posts/functional-instructions/">
+  <meta property="og:site_name" content="Roger That Dev">
+  <meta property="og:title" content="Coding Assistant Instructions for Learning">
+  <meta property="og:description" content="When the journey matters more than the destination Coding agents like Claude Code are cool, but it’s no fun if you want to learn to write code yourself.
+If you’re using coding agents but still want to learn, this pattern may help. Below is a set of instructions I include in the agent config file (CLAUDE.md for Claude Code) to help it help me learn functional programming in my personal projects. The principles are sourced from the book Mastering JavaScript Functional Programming by Federico Kereki. I used AI to refine them to be Python-specific for a project I’m working on.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-02-03T08:25:51-08:00">
+    <meta property="article:modified_time" content="2026-02-03T08:25:51-08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Coding Assistant Instructions for Learning">
+  <meta name="twitter:description" content="When the journey matters more than the destination Coding agents like Claude Code are cool, but it’s no fun if you want to learn to write code yourself.
+If you’re using coding agents but still want to learn, this pattern may help. Below is a set of instructions I include in the agent config file (CLAUDE.md for Claude Code) to help it help me learn functional programming in my personal projects. The principles are sourced from the book Mastering JavaScript Functional Programming by Federico Kereki. I used AI to refine them to be Python-specific for a project I’m working on.">
+
+  <link rel="canonical" href="https://www.rogerthat.dev/posts/functional-instructions/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="https://www.rogerthat.dev/"
+      >Roger That Dev</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/rogerthatdev"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/rogermartinez"
+        target="_blank"
+        rel="me"
+      >linkedin</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./bluesky.svg)"
+        href="https://bsky.app/profile/rogerthatdev.bsky.social"
+        target="_blank"
+        rel="me"
+      >bluesky</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./rss.svg)"
+        href="https://www.rogerthat.dev/index.xml"
+        target="_blank"
+        rel="alternate"
+      >rss</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">Coding Assistant Instructions for Learning</h1><div class="text-xs antialiased opacity-60"><time>Feb 3, 2026</time></div></header>
+
+  <section><h2 id="when-the-journey-matters-more-than-the-destination">When the journey matters more than the destination</h2>
+<p>Coding agents like Claude Code are cool, but it&rsquo;s no fun if you want to learn to write code yourself.</p>
+<p>If you’re using coding agents but still want to learn, this pattern may help. Below is a set of instructions I include in the agent config file (<code>CLAUDE.md</code> for Claude Code) to help it <strong>help me</strong> learn functional programming in my personal projects. The principles are sourced from the book <a href="https://www.packtpub.com/en-us/product/mastering-javascript-functional-programming-9781804610411">Mastering JavaScript Functional Programming</a> by Federico Kereki. I used AI to refine them to be Python-specific for a project I&rsquo;m working on.</p>
+<p>Link to GitHub gist <a href="https://gist.github.com/rogerthatdev/3c2109fd09a5f2ccd6c2be4c058e0454">here</a>.</p>
+<pre tabindex="0"><code>## Functional Programming Principles in Python
+
+*   **Pure Functions:** A pure function **always returns the same result given the same arguments** and causes **no observable side effects** (no modifying global variables, mutating objects, or performing I/O). Python doesn&#39;t enforce purity, so discipline is required. Pure functions are easier to test and reason about.
+
+*   **Immutability:** Use **data structures that cannot be changed after creation**. Python&#39;s immutable types include `tuple`, `frozenset`, `str`, and `NamedTuple`. For custom types, use `@dataclass(frozen=True)`. Prefer creating new data over mutating existing data.
+
+*   **First-Class Functions:** Python treats functions as first-class citizens—they can be **stored in variables, passed as arguments, and returned from functions**. This enables patterns like callbacks, decorators, and dependency injection.
+
+*   **Higher-Order Functions (HOFs):** Functions that **take or return other functions**. Python provides `map()`, `filter()`, and `functools.reduce()`. List comprehensions and generator expressions often serve as more Pythonic alternatives to `map`/`filter`.
+
+*   **Declarative Programming:** Focus on **&#34;what&#34; to compute rather than &#34;how&#34;**. Prefer comprehensions over manual loops, and compose functions rather than writing step-by-step imperative code.
+
+*   **Function Composition:** **Chain simple functions together** to build complex operations. Python lacks a built-in compose operator, but you can chain function calls or use `functools.reduce` to compose functions programmatically.
+
+*   **Recursion:** Recursive functions call themselves with simpler inputs until reaching a base case. **Python caveat:** The default recursion limit is ~1000 and Python has **no tail-call optimization**. For deep recursion, prefer iteration or generators.
+
+*   **Referential Transparency:** An expression is referentially transparent if it can be **replaced by its value without changing program behavior**. This requires pure functions. Python&#39;s `@functools.lru_cache` leverages this for memoization.
+
+*   **Partial Application:** Fix some arguments of a function to create a specialized version. Use `functools.partial()` to create partially applied functions. True currying requires a custom decorator or library.
+
+*   **Lazy Evaluation:** Delay computation until results are needed. Python supports this natively via **generators** (`yield`), **generator expressions** `(x for x in items)`, and the **`itertools`** module. This enables memory-efficient processing of large or infinite sequences.
+
+## Teaching Style
+
+- When reviewing code, explicitly label which FP principle applies
+- Use the Socratic method: ask guiding questions before giving answers
+- Compare imperative vs functional approaches when illustrating concepts
+</code></pre></section>
+
+  <nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="https://www.rogerthat.dev/posts/my-first-post/"
+      ><span>New site, first post</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2026
+    <a class="link" href="https://www.rogerthat.dev/">Roger That Dev</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>
