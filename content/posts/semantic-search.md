@@ -7,7 +7,7 @@ tags = ["semantic-search", "ai", "101", "explainer"]
 
 ## A match made in SQL
 
-If you're looking for something in a regular ol' database, a keyword could do the trick. 
+If you're looking for something in a regular ol' database, a keyword search could do the trick. 
 
 ```sql
 SELECT *
@@ -52,6 +52,12 @@ This seems wrong. None of these results include the word "skinny" or "fast". Why
 
 Well, a **vector database** is able to move beyond the language of words and on to the proximity of meaning by using a **text embedding model.** A text embedding model can discern that the meaning of *skinny and fast* can be inferred from the notes of each row returned.
 
-Using the example above, it's able to take a numerical representation called a **text embedding** of the words "skinny and fast" and use it to find a close match of the numerical representation of the text in the `notes` column. 
+Using the example above, it's able to take a numerical representation (called a **text embedding**) of the words "skinny and fast" and use it to find a close match of the numerical representation of the text in the `notes` column. Instead of matching on keywords, we can match on semantic similarity.
 
-![Whippet](/images/whippet.png)
+A quick way to see semantic similarity in action: Ask your favorite AI chat to guess one word you're thinking of based on 5 related words or phrases. See how close it gets to the word you're thinking. Here's a prompt to start with.
+
+```
+Your job is to guess the single word I'm thinking of.
+I will provide 5 related words or phrases.
+Respond with one word only.
+```
