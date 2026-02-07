@@ -1,8 +1,9 @@
 +++
-date = '2026-02-06T16:22:29-08:00'
-draft = true
+date = '2026-02-07T08:39:22-0800'
+draft = false
 title = "Semantic Search: Finding meaning with AI"
 tags = ["semantic-search", "ai", "101", "explainer"]
+nowplaying = "J. Cole - The Fall-off"
 +++
 
 ## A match made in SQL
