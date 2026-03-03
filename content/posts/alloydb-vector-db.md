@@ -47,11 +47,11 @@ This will enable a private services access connection on our default VPC.  That 
 
 {{< figure src="overview.png" alt="cluster overview page" width="500" >}}
 
-Copy the the value for **Service Account** to your clipboard. We'll use that in the next step.  
+Copy the value for **Service Account** to your clipboard. We'll use that in the next step.  
 
-## 2. Grant the AlloyDB service account access Vertex AI
+## 2. Grant the AlloyDB service account access to Vertex AI
 
-AlloyDB's AI functionality is powered by **Vertex AI**. It's not automatic so we have to manually grant the appropriate permissions to the AlloyDB service account that we copied in the last step.  To do this, we head over to the **[IAM Admin page](https://console.cloud.google.com/iam-admin/iam)** and click **Grant Access.** Specify the AlloyDB service account and choose the **Vertex AI User** role:
+AlloyDB's AI functionality is powered by **Vertex AI**. It's not automatic, so we have to manually grant the appropriate permissions to the AlloyDB service account that we copied in the last step.  To do this, we head over to the **[IAM Admin page](https://console.cloud.google.com/iam-admin/iam)** and click **Grant Access.** Specify the AlloyDB service account and choose the **Vertex AI User** role:
 
 {{< figure src="vertexiam.png" alt="granting the service account vertex ai access" width="400" >}}
 
@@ -59,7 +59,7 @@ Hit save and head back to the AlloyDB cluster Overview page.
 
 ## 3. Create a new database
 
-Our new cluster includes a default database called `postgres` but let’s create our own. There isn’t a way to do that in the console. Instead, we have to use the in-console **AlloyDB Studio**. A link to AlloyDB Studio can be found in the left side navigation pane of the **Overview** page, next to the magnifying glass icon. 
+Our new cluster includes a default database called `postgres` but let’s create our own. There's no way to do that in the console, so we have to use the in-console **AlloyDB Studio**. A link to AlloyDB Studio can be found in the left side navigation pane of the **Overview** page, next to the magnifying glass icon. 
 
 First it will ask us to log in to our database.  
 
@@ -88,7 +88,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 CREATE EXTENSION IF NOT EXISTS alloydb_scann;
 ```
 
-The `vector` extension is an AlloyDB-customized version of the stock pgvector PostgreSQL extension. The `alloydb_scann` extension lets us implement highly efficient indexing using the ScaNN algorithm. Together, they enhance our ordinary postgreSQL database so that it can store and query vector embeddings.   
+The `vector` extension is an AlloyDB-customized version of the stock pgvector PostgreSQL extension. The `alloydb_scann` extension lets us implement highly efficient indexing using the ScaNN algorithm. Together, they enhance our ordinary PostgreSQL database so that it can store and query vector embeddings.   
 
 ## 5. Create a table with a vector embedding column
 
@@ -160,8 +160,8 @@ ORDER BY
 LIMIT 5;
 ```
 
-The result we get back should be 5 rows, each one semanitcally matching the search term provided in the query.
+The result we get back should be 5 rows, each one semantically matching the search term provided in the query.
 
 ## What next?
 
-These steps are dependent on the sample data that I provided at the top of the tutorial, but they have everything you need to apply it to our own data. Everything here was done from the Google Cloud Console. If you have a preferred client, like pgadmin, or if you want to connect your application to the database, check out the [documentation for setting up a connection to AlloyDB](https://docs.cloud.google.com/alloydb/docs/choose-alloydb-connectivity).  
+These steps are dependent on the sample data that I provided at the top of the tutorial, but they have everything you need to apply it to your own data. Everything here was done from the Google Cloud Console. If you have a preferred client, like pgadmin, or if you want to connect your application to the database, check out the [documentation for setting up a connection to AlloyDB](https://docs.cloud.google.com/alloydb/docs/choose-alloydb-connectivity).  
