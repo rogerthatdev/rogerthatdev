@@ -6,7 +6,7 @@ tags = ["semantic search", "vector databases", "ai", "tutorial", "Google Cloud"]
 nowplaying = "Baby Keem - Ca$ino"
 +++
 
-Vector database platforms like [Pinecone](http://pinecone.io/) and [Qdrant](https://qdrant.tech/) offer a great streamlined experience for spinning up, loading data, and querying a vector database. **AlloyDB** is a different category of product entirely: enterprise-grade PostgreSQL built for high availability, extreme scale, and production workloads. That depth means getting started with vector search on AlloyDB takes a few more steps than a vector-only platform — but if that's the infrastructure you're building on, it's worth it.
+Vector database platforms like [Pinecone](http://pinecone.io/) and [Qdrant](https://qdrant.tech/) offer a great streamlined experience for spinning up, loading data, and querying a vector database. **[AlloyDB](https://cloud.google.com/products/alloydb)** is a different category of product entirely: enterprise-grade PostgreSQL built for high availability, extreme scale, and production workloads. That depth means getting started with vector search on AlloyDB takes a few more steps than a vector-only platform — but if that's the infrastructure you're building on, it's worth it.
 
 **Here's the fast path to spinning up your first vector database on AlloyDB.**
 
