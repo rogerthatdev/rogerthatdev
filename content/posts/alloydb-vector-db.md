@@ -25,7 +25,7 @@ We’ll need a few things before we get started:
 * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com)  
 * [Service Networking API](https://console.cloud.google.com/apis/library/servicenetworking.googleapis.com)
 
-**Sample data.** [Here is a CSV file](https://github.com/rogerthatdev/vector-alloydb/blob/main/products_truncated.csv) of 2,000 products of a mock online store. We’ll be using the product descriptions to generate vector embeddings and perform a semantic search.  
+**Sample data.** [Here is a CSV file](products_truncated.csv) of 2,000 products of a mock online store. We’ll be using the product descriptions to generate vector embeddings and perform a semantic search.  
 
 ## 1\. Create a 1vCPU prototyping cluster
 
