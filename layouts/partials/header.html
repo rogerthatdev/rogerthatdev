@@ -5,7 +5,7 @@
     <a
       class="-translate-y-[1px]"
       href="{{- `` | absURL -}}"
-      ><img src="{{- `rtdlogo.png` | absURL -}}" alt="{{ site.Title }}" class="h-8 w-auto" /></a
+      ><img id="site-logo" src="{{- `rtdlogo.png` | absURL -}}" alt="{{ site.Title }}" class="h-8 w-auto" /></a
     >
     <div
       class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer {{ if site.Params.monoDarkIcon }}[background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert{{ else }}[background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)]{{ end }} dark:[background-position:right]"
@@ -38,10 +38,14 @@
     // dark theme
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     const lightBg = '{{- $bg_color -}}'.replace(/"/g, '');
+    const logo = document.getElementById('site-logo');
+    const logoDefault = '{{- `rtdlogo.png` | absURL -}}';
+    const logoDark = '{{- `rtdlogolight.png` | absURL -}}';
     const setDark = (isDark) => {
       metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
       htmlClass[isDark ? 'add' : 'remove']('dark');
       localStorage.setItem('dark', isDark);
+      logo.src = isDark ? logoDark : logoDefault;
     };
 
     // init
