@@ -1,7 +1,7 @@
 +++
 date = '2026-03-19T07:48:29-07:00'
 draft = false
-title = 'AI Technology Stack on Google Cloud'
+title = 'AI Tech Stack on Google Cloud'
 +++
 
 This great video by [IBM Technology](https://www.youtube.com/watch?v=RRKwmeyIc24) breaks down AI stack into **5 layers**. 
