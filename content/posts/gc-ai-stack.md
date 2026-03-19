@@ -1,14 +1,16 @@
 +++
-date = '2026-03-19T07:48:29-07:00'
+date = '2026-03-19T07:35:14-0700'
 draft = false
 title = 'AI Tech Stack on Google Cloud'
 +++
 
-This great video by [IBM Technology](https://www.youtube.com/watch?v=RRKwmeyIc24) breaks down AI stack into **5 layers**. 
+This is a great video by [IBM Technology](https://www.youtube.com/watch?v=RRKwmeyIc24) that breaks down the AI stack into **5 layers**: 
 
 {{< youtube RRKwmeyIc24 >}}
 
-Below is a reference to Google Cloud services that correspond with each layer in the stack.
+Google Cloud is a big ol' platform that be used to develop and build out any layer in the stack. It can get complex, so I want to write up a series of posts that talks about each layer as it applies to Google Cloud. 
+
+For now, here's a reference table with what I have planned. 
 
 | Layer | Post | Google Cloud services | Start here |
 | :---- | :---- | :---- | :---- |
@@ -20,5 +22,3 @@ Below is a reference to Google Cloud services that correspond with each layer in
 | Orchestration | Coming soon | Vertex AI | [Introduction to Vertex AI Pipelines](https://docs.cloud.google.com/vertex-ai/docs/pipelines/introduction) |
 | Application | Coming soon | Cloud Run | [AI solutions on Cloud Run](https://docs.cloud.google.com/run/docs/ai/overview) |
 |  |  | Firebase | [Gemini in Firebase](https://firebase.google.com/docs/ai-assistance/gemini-in-firebase) |
-
-I’ll update each layer in the table with a post with more details about each service soon(ish).
