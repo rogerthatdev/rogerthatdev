@@ -2,6 +2,7 @@
 date = '2026-03-19T07:35:14-0700'
 draft = false
 title = 'AI Tech Stack on Google Cloud'
+tags = ["ai", "reference", "Google Cloud"]
 +++
 
 This is a great video by [IBM Technology](https://www.youtube.com/watch?v=RRKwmeyIc24) that breaks down the AI stack into **5 layers**: 
