@@ -11,7 +11,7 @@ These days, anyone can be a builder. With agentic AI assistants and app platform
 
 Every Firebase app should have at least two environments: **one production (prod)** and **at least one pre-production (pre-prod)**. Prod is for the live show and pre-prod is for rehearsals, dress rehearsals and dry runs. Pre-prod environments allow you to experiment, explore and make mistakes without impacting what users are seeing or any data that matters. Even if you’re doing local development with the Firestore Emulator Suite, it’s important to have a pre-prod environment deployed on Google Cloud too.  
 
-Firebase outlines three specific types of environments that can constitute pre-prod**.** Your application and needs will determine which ones you’d want to set up:
+Firebase outlines three specific types of environments that can constitute **pre-prod**. Your application and needs will determine which ones you’d want to set up:
 
 * **Development projects:** safe isolated environments to test changes as they’re being built by individual developers.  
 * **Test/QA projects:** safe isolated environments for automated testing.  
