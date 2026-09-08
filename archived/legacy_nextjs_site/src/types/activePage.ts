@@ -1,1 +1,0 @@
-export type ActivePage = "home" | "gcp-for-devs" | "genai" | "devrel"
