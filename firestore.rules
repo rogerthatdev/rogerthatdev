@@ -1,18 +1,43 @@
-rules_version='2'
+rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // No application code writes to Firestore yet (fresh Next.js scaffold).
+    // This assumes a single collection for blog content:
+    //
+    // Collection: posts
+    // Document ID: auto-generated or a slug
+    // Fields (indicative only — reads are public regardless of shape):
+    //   - title: string
+    //   - slug: string
+    //   - content: string
+    //   - excerpt: string (optional)
+    //   - publishedAt: timestamp
+    //   - tags: list<string> (optional)
+    //
+    // Writes are never permitted from any client (authenticated or not).
+    // Content must be created/updated/deleted from a trusted server
+    // context only — e.g. the Admin SDK from a Cloud Function, or the
+    // Firebase CLI/Console — all of which bypass Security Rules entirely.
+    // ===============================================================
+
+    match /posts/{postId} {
+      // Public, read-only blog content — visible to all visitors.
+      allow read: if true;
+
+      // No client writes under any circumstance (covers create, update,
+      // and delete).
+      allow write: if false;
+    }
+
+    // Default deny for anything outside the collections defined above.
     match /{document=**} {
-      // This rule allows anyone with your database reference to view, edit,
-      // and delete all data in your database. It is useful for getting
-      // started, but it is configured to expire after 30 days because it
-      // leaves your app open to attackers. At that time, all client
-      // requests to your database will be denied.
-      //
-      // Make sure to write security rules for your app before that time, or
-      // else all client requests to your database will be denied until you
-      // update your rules.
-      allow read, write: if request.time < timestamp.date(2026, 10, 8);
+      allow read, write: if false;
     }
   }
 }

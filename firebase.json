@@ -1,7 +1,8 @@
 {
   "firestore": {
-    "database": "(default)",
+    "database": "blog",
     "location": "nam5",
+    "edition": "enterprise",
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
