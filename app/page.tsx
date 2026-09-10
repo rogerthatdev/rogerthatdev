@@ -1,101 +1,146 @@
-import Image from "next/image";
+import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { getAllPosts } from "@/lib/posts";
+import { getRecentMicroblogs } from "@/lib/microblog";
+import { estimateReadMinutes, formatIsoDate, formatRelativeTime } from "@/lib/format";
+import { siteConfig } from "@/lib/site-config";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const [allPosts, notes] = await Promise.all([
+    getAllPosts(),
+    getRecentMicroblogs(8),
+  ]);
+  const recentPosts = allPosts.slice(0, 5);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex min-h-screen flex-col">
+      <SiteHeader active="home" />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
+        {/* Hero & Profile */}
+        <section className="mb-16 flex flex-col gap-6 border-b border-slate-200 pb-12 sm:flex-row sm:items-start">
+          <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full border border-slate-200 bg-slate-50 font-mono text-lg text-slate-500">
+            RM
+          </div>
+          <div>
+            <div className="flex flex-wrap items-baseline gap-3">
+              <h1 className="text-2xl font-bold text-slate-900">
+                {siteConfig.name}
+              </h1>
+              <span className="font-mono text-xs text-slate-500">
+                {siteConfig.version}
+              </span>
+            </div>
+            <p className="mt-1 font-mono text-xs text-slate-500">
+              {siteConfig.role} · {siteConfig.email}
+            </p>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600">
+              {siteConfig.bio}
+            </p>
+          </div>
+        </section>
+
+        {/* Main content grid */}
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_320px]">
+          {/* Recent writing */}
+          <section>
+            <div className="mb-6 flex items-baseline justify-between">
+              <h2 className="font-mono text-xs uppercase tracking-wide text-slate-500">
+                Recent Writing ({allPosts.length})
+              </h2>
+              <Link
+                href="/blog"
+                className="font-mono text-xs text-slate-500 hover:text-slate-900"
+              >
+                Explore all essays &amp; articles -&gt;
+              </Link>
+            </div>
+
+            {recentPosts.length === 0 ? (
+              <p className="border-t border-slate-200 py-8 text-sm text-slate-500">
+                No published posts yet.
+              </p>
+            ) : (
+              <ol className="divide-y divide-slate-200 border-t border-slate-200">
+                {recentPosts.map((post, index) => (
+                  <li key={post.slug} className="py-6">
+                    <p className="font-mono text-xs text-slate-500">
+                      {formatIsoDate(post.date)} ·{" "}
+                      {String(index).padStart(2, "0")} ·{" "}
+                      {estimateReadMinutes(post.raw)} min read
+                    </p>
+                    <h3 className="mt-2 text-lg font-bold text-slate-900">
+                      <Link href={`/blog/${post.slug}`} className="hover:underline">
+                        {post.title}
+                      </Link>
+                    </h3>
+                    {post.excerpt && (
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    {post.tags.length > 0 && (
+                      <p className="mt-3 flex flex-wrap gap-3 font-mono text-xs text-slate-500">
+                        {post.tags.map((tag) => (
+                          <span key={tag}>#{tag}</span>
+                        ))}
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            )}
+          </section>
+
+          {/* Microblog / status notes */}
+          <aside>
+            <div className="mb-6 flex items-baseline justify-between">
+              <h2 className="font-mono text-xs uppercase tracking-wide text-slate-500">
+                Status &amp; Notes
+              </h2>
+              <span className="font-mono text-[10px] text-slate-400">
+                MICRO // SYNC
+              </span>
+            </div>
+
+            {notes.length === 0 ? (
+              <p className="border-t border-slate-200 py-8 text-sm text-slate-500">
+                No notes yet.
+              </p>
+            ) : (
+              <ol className="divide-y divide-slate-200 border-t border-slate-200">
+                {notes.map((note) => (
+                  <li key={note.id} className="py-4">
+                    <p className="font-mono text-xs text-slate-500">
+                      {formatRelativeTime(note.createdAt)}
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-700">
+                      {note.text}
+                    </p>
+                    {note.category && (
+                      <span className="mt-2 inline-block rounded border border-slate-200 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-slate-500">
+                        {note.category}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            )}
+
+            <a
+              href="/feed.xml"
+              className="mt-6 inline-block font-mono text-xs text-slate-500 hover:text-slate-900"
+            >
+              RSS feed for micro-notes -&gt;
+            </a>
+          </aside>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      <SiteFooter />
     </div>
   );
 }
