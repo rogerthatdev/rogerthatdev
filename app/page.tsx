@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -22,9 +23,14 @@ export default async function Home() {
       <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
         {/* Hero & Profile */}
         <section className="mb-16 flex flex-col gap-6 border-b border-slate-200 pb-12 sm:flex-row sm:items-start">
-          <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full border border-slate-200 bg-slate-50 font-mono text-lg text-slate-500">
-            RM
-          </div>
+          <Image
+            src="/avatar.png"
+            alt={siteConfig.name}
+            width={80}
+            height={80}
+            priority
+            className="h-20 w-20 flex-shrink-0 rounded-full border border-slate-200 object-cover"
+          />
           <div>
             <div className="flex flex-wrap items-baseline gap-3">
               <h1 className="text-2xl font-bold text-slate-900">
@@ -102,7 +108,7 @@ export default async function Home() {
                 Status &amp; Notes
               </h2>
               <span className="font-mono text-[10px] text-slate-400">
-                MICRO // SYNC
+                 // 
               </span>
             </div>
 

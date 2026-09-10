@@ -7,7 +7,7 @@ export function SiteHeader({ active }: { active: "home" | "blog" }) {
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
         <Link href="/" className="flex items-center gap-2">
           <span className="font-mono text-lg font-semibold text-slate-900">
-            R&gt;
+            R/M
           </span>
           <span className="font-mono text-sm text-slate-900">
             rogerthat.dev

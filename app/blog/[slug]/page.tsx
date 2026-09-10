@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -7,6 +8,17 @@ import { estimateReadMinutes, formatIsoDate } from "@/lib/format";
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();
   return slugs.map((slug) => ({ slug }));
+}
+
+function BackToBlogLink() {
+  return (
+    <Link
+      href="/blog"
+      className="inline-flex items-center gap-2 font-mono text-xs text-slate-500 hover:text-slate-900"
+    >
+      <span aria-hidden>←</span> go back
+    </Link>
+  );
 }
 
 export default async function BlogPost({
@@ -36,10 +48,18 @@ export default async function BlogPost({
           </p>
         )}
 
+        <div className="mt-6">
+          <BackToBlogLink />
+        </div>
+
         <div
           className="prose prose-slate mt-10 max-w-none border-t border-slate-200 pt-10 text-sm leading-relaxed text-slate-700 prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-slate-900"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
+
+        <div className="mt-10 border-t border-slate-200 pt-6">
+          <BackToBlogLink />
+        </div>
       </main>
 
       <SiteFooter />
