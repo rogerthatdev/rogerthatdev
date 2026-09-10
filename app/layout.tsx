@@ -17,7 +17,7 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "rogerthat.dev",
   description:
-    "Distributed consensus, local-first architectures, web runtime internals, and developer ergonomics.",
+    "Developer Relations Engineer for Firebase and Google Cloud",
 };
 
 export default function RootLayout({
